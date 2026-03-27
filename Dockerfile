@@ -1,0 +1,20 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Variables importantes
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app
+
+# Instalar dependencias
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar proyecto
+COPY app/ /app/
+
+EXPOSE 5000
+
+# OJO: apuntamos a main dentro de app
+CMD ["gunicorn", "-w", "1", "-b", "0.0.0.0:5000", "main:create_app()"]
