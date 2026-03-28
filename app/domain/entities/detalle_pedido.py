@@ -13,6 +13,7 @@ class DetallePedido:
 
     producto: Producto
     cantidad: int
+    nombre: str = ""
 
     def calcular_subtotal(self) -> float:
         """

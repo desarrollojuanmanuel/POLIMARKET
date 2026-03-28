@@ -14,6 +14,16 @@ def obtener_pedidos():
         {
             "id": p.id,
             "estado": p.estado,
+            "detalles": [
+                {
+                    "producto_id": d.producto.id,
+                    "producto_nombre": d.producto.nombre,
+                    "precio": d.producto.precio,
+                    "cantidad": d.cantidad,
+                    "subtotal": d.calcular_subtotal()
+                }
+                for d in p.detalles
+            ],
             "total": p.calcular_total()
         } for p in pedidos
     ])

@@ -19,23 +19,30 @@ class VentasMock:
     pedidos: List[Pedido] = []
     productos: List[Producto] = [
         Producto(1, "Laptop", 3500),
-        Producto(2, "Mouse", 80)
+        Producto(2, "Mouse", 80),
+        Producto(3, "Monitor", 2800),
+        Producto(4, "WebCam", 100),
+        Producto(5, "Teclados", 90)
     ]
 
-    _inicialisated = False
+    _initialized = False
 
     @classmethod
     def initialize(cls):
-        if not cls._inicialisated:
-            pedido=Pedido(
+        if not cls._initialized:
+            pedido = Pedido(
                 id=1,
                 fecha=datetime.now(),
                 estado="pendiente"
             )
-            detalle = DetallePedido(cls.productos[0], 1)
-            pedido.agregar_detalle(detalle)
+ 
+            pedido.agregar_detalle(DetallePedido(cls.productos[0], 1))
+            pedido.agregar_detalle(DetallePedido(cls.productos[1], 1))
+            pedido.agregar_detalle(DetallePedido(cls.productos[3], 1))
+            pedido.agregar_detalle(DetallePedido(cls.productos[0], 1))
+ 
             cls.pedidos.append(pedido)
-            cls._inicialisated = True    
+            cls._initialized = True    
 
     @classmethod
     def crear_pedido(cls) -> Pedido:
