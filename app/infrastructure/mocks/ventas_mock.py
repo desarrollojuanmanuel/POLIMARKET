@@ -38,8 +38,6 @@ class VentasMock:
  
             pedido.agregar_detalle(DetallePedido(cls.productos[0], 1))
             pedido.agregar_detalle(DetallePedido(cls.productos[1], 1))
-            pedido.agregar_detalle(DetallePedido(cls.productos[3], 1))
-            pedido.agregar_detalle(DetallePedido(cls.productos[0], 1))
  
             cls.pedidos.append(pedido)
             cls._initialized = True    
