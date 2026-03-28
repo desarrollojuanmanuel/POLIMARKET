@@ -22,6 +22,21 @@ class VentasMock:
         Producto(2, "Mouse", 80)
     ]
 
+    _inicialisated = False
+
+    @classmethod
+    def initialize(cls):
+        if not cls._inicialisated:
+            pedido=Pedido(
+                id=1,
+                fecha=datetime.now(),
+                estado="pendiente"
+            )
+            detalle = DetallePedido(cls.productos[0], 1)
+            pedido.agregar_detalle(detalle)
+            cls.pedidos.append(pedido)
+            cls._inicialisated = True    
+
     @classmethod
     def crear_pedido(cls) -> Pedido:
         """
@@ -50,4 +65,6 @@ class VentasMock:
         Returns:
             List[Pedido]: Lista de pedidos.
         """
+        cls.initialize()
+
         return cls.pedidos
